@@ -23,9 +23,9 @@
 		<tbody>
 			@foreach($pedidos as $pedido)
 				<tr>
+					<td style="border-bottom: 1px solid #ccc; padding: 10px;">{{ $pedido->sucursal->nombre }}</td>
 					<td style="border-bottom: 1px solid #ccc; padding: 10px;">{{ $pedido->empleado->nombres . ' ' . $pedido->empleado->apellidos }}</td>
 					<td style="border-bottom: 1px solid #ccc; padding: 10px;">{{ $pedido->cliente->cliNombres . ' ' . $pedido->cliente->cliApellidos }}</td>
-					<td style="border-bottom: 1px solid #ccc; padding: 10px;">{{ $pedido->sucursal->nombre }}</td>
 					<td style="border-bottom: 1px solid #ccc; padding: 10px;">
 						<a href="#" class="btn-editar">
 							Ver detalle
@@ -124,7 +124,7 @@
 						</div>							
 						<div class="form-group text-center">
 							<span hidden class="no-productos" style="color: red; font-weight: bold;">Seleccione al menos un producto</span>
-							<input type="text" name="todos_los_productos" class="form-control form-control-sm" readonly required>
+							<input type="hidden" name="todos_los_productos" class="form-control form-control-sm" readonly required>
 							<button type="submit" class="btn btn-success btn-guardar" disabled>PROCESAR PEDIDO</button>
 						</div>
 					</form>
@@ -279,7 +279,6 @@
 				let cantidad = $(this).find('td:nth-child(2)').find('input.cantidad').val();
 				productos += id + '==>' + producto + '==>' + cantidad + '===>';
 			});
-			console.log(productos);
 			$('input[name=todos_los_productos]').val(productos);
 			if(resultado === 0){
 				return productos;
